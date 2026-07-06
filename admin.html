@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Survei - Supabase</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { background:#0f0f1a; color:white; font-family:Segoe UI; padding:2rem; }
+    table { width:100%; border-collapse:collapse; margin-top:1rem; background:#1a1a2e; }
+    th, td { border:1px solid #333; padding:0.5rem; font-size:0.8rem; }
+    th { background:#f7971e; color:black; }
+    input, select, button { padding:0.5rem; margin-right:0.5rem; border-radius:6px; border:none; }
+    button { background:#f7971e; color:black; font-weight:bold; cursor:pointer; }
+    .filter-bar { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0; }
+  </style>
+</head>
+<body>
+  <h1>📊 Admin Panel - Data Survei</h1>
+  <div class="filter-bar">
+    <input type="text" id="filterNegara" placeholder="Filter negara...">
+    <input type="text" id="filterRank" placeholder="Filter rank...">
+    <button onclick="loadData()">Terapkan Filter</button>
+    <button onclick="downloadTXT()">⬇ Unduh .txt</button>
+  </div>
+  <div id="dataContainer">Memuat data...</div>
+
+  <script>
+    const SUPABASE_URL = 'https://your-project-id.supabase.co';
+    const SUPABASE_ANON_KEY = 'your-anon-key';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let allData = [];
+
+    async function loadData() {
+      let query = supabase.from('survei').select('*');
+      const negara = document.getElementById('filterNegara').value.trim();
+      const rank = document.getElementById('filterRank').value.trim();
+      if(negara) query = query.ilike('negara', `%${negara}%`);
+      if(rank) query = query.ilike('rank_tertinggi', `%${rank}%`);
+      const { data, error } = await query;
+      if(error) { document.getElementById('dataContainer').innerText = 'Error: '+error.message; return; }
+      allData = data;
+      renderTable(data);
+    }
+
+    function renderTable(data) {
+      if(!data.length) { document.getElementById('dataContainer').innerHTML = '<p>Tidak ada data.</p>'; return; }
+      const keys = Object.keys(data[0]);
+      let html = '<table><thead><tr>';
+      keys.forEach(k => html += `<th>${k}</th>`);
+      html += '</tr></thead><tbody>';
+      data.forEach(row => {
+        html += '<tr>';
+        keys.forEach(k => html += `<td>${row[k] ?? ''}</td>`);
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      document.getElementById('dataContainer').innerHTML = html;
+    }
+
+    function downloadTXT() {
+      if(!allData.length) { alert('Tidak ada data'); return; }
+      let txt = '';
+      allData.forEach((row, i) => {
+        txt += `Data ke-${i+1}\n`;
+        Object.entries(row).forEach(([key,val]) => txt += `${key}: ${val}\n`);
+        txt += '---\n';
+      });
+      const blob = new Blob([txt], {type:'text/plain'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = 'data_survei.txt'; a.click();
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
