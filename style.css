@@ -1,125 +1,112 @@
+:root {
+  --primary: #4a90e2; /* Biru Profesional */
+  --bg-dark: #0f172a;
+  --glass: rgba(255, 255, 255, 0.05);
+  --text: #f8fafc;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
 body {
-  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  background: radial-gradient(circle at top right, #1e293b, #0f172a);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 20px;
+  color: var(--text);
 }
+
 #app {
   width: 100%;
-  max-width: 580px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(20px);
-  border-radius: 28px;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 30px 50px rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #f0f0f0;
-  position: relative;
+  max-width: 500px;
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
 }
-.slide {
-  display: none;
-  animation: fade 0.3s ease;
-}
-.slide.active {
-  display: block;
-}
+
+.slide { display: none; animation: fadeIn 0.4s ease-out; }
+.slide.active { display: block; }
+
 .judul {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
   text-align: center;
-  font-size: 1.9rem;
-  margin-bottom: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  background: linear-gradient(to right, #f7971e, #ffd200);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
+
 .subjudul {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: center;
+  margin-bottom: 2rem;
   display: block;
+}
+
+.form-group { margin-bottom: 1.5rem; }
+
+label {
+  display: block;
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-bottom: 0.3rem;
-  color: #ccc;
+  margin-bottom: 0.5rem;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
-.form-group {
-  margin-bottom: 1.2rem;
-}
+
 input, select {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 12px 16px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.2);
   color: white;
   font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: var(--primary);
+  background: rgba(30, 41, 59, 0.5);
   outline: none;
 }
-input::placeholder {
-  color: #aaa;
-}
+
 .nav-buttons {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   margin-top: 2rem;
 }
+
 .nav-btn {
-  padding: 0.7rem 1.8rem;
+  flex: 1;
+  padding: 12px;
   border: none;
-  border-radius: 30px;
-  font-weight: bold;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
-  background: #2d2d44;
-  color: white;
   transition: 0.3s;
 }
-.next-btn, .submit-btn {
-  background: linear-gradient(135deg, #f7971e, #ffd200);
-  color: #1a1a2e;
-}
-.prev-btn {
-  background: #3a3a55;
-}
-button:hover { filter: brightness(1.15); }
 
-/* Reward */
-.reward-card {
-  text-align: center;
-  background: rgba(255,255,255,0.05);
-  padding: 2rem;
-  border-radius: 24px;
-}
-.claim-btn { margin-top: 1rem; width: 100%; }
+.next-btn { background: var(--primary); color: white; }
+.prev-btn { background: #334155; color: #cbd5e1; }
+.nav-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
 
-/* Popup */
-.popup-overlay {
-  display: none;
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.8);
-  align-items: center; justify-content: center;
-  z-index: 100;
-}
-.popup-overlay.active { display: flex; }
+/* Reward & Popup */
+.reward-card { text-align: center; padding: 2rem; }
 .popup-box {
-  background: #1e1e2f;
+  background: #0f172a;
+  border: 1px solid #1e293b;
   padding: 2rem;
-  border-radius: 24px;
-  width: 90%;
-  max-width: 380px;
-  display: flex; flex-direction: column; gap: 0.9rem;
+  border-radius: 20px;
 }
-.success-box { text-align: center; align-items: center; }
-.checkmark-circle {
-  width: 70px; height: 70px;
-  background: #2ecc71; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.8rem; color: white; font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-@keyframes fade { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0);} }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
