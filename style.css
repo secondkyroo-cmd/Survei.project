@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+body {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+#app {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 30px 50px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #f0f0f0;
+  position: relative;
+}
+.slide {
+  display: none;
+  animation: fade 0.3s ease;
+}
+.slide.active {
+  display: block;
+}
+.judul {
+  text-align: center;
+  font-size: 1.9rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(to right, #f7971e, #ffd200);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subjudul {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #ccc;
+}
+.form-group {
+  margin-bottom: 1.2rem;
+}
+input, select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.4);
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+}
+input::placeholder {
+  color: #aaa;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.nav-btn {
+  padding: 0.7rem 1.8rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #2d2d44;
+  color: white;
+  transition: 0.3s;
+}
+.next-btn, .submit-btn {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #1a1a2e;
+}
+.prev-btn {
+  background: #3a3a55;
+}
+button:hover { filter: brightness(1.15); }
+
+/* Reward */
+.reward-card {
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  padding: 2rem;
+  border-radius: 24px;
+}
+.claim-btn { margin-top: 1rem; width: 100%; }
+
+/* Popup */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  align-items: center; justify-content: center;
+  z-index: 100;
+}
+.popup-overlay.active { display: flex; }
+.popup-box {
+  background: #1e1e2f;
+  padding: 2rem;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 380px;
+  display: flex; flex-direction: column; gap: 0.9rem;
+}
+.success-box { text-align: center; align-items: center; }
+.checkmark-circle {
+  width: 70px; height: 70px;
+  background: #2ecc71; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.8rem; color: white; font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+@keyframes fade { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0);} }
